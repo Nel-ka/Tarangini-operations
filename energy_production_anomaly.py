@@ -32,8 +32,10 @@ def analyze_data(csv_file, capacity, deterioration_rate,installation_date):
             threshold = cap.determine_threshold(weather_condition, max_production)
 
             # Check if net production is significantly lower than the threshold
-            if output_power < threshold * 0.6:  # Adjusted threshold to allow for 40% deviation
+            if output_power < threshold * 0.6:  # Adjusted threshold to allow deviation
                 print("\033[91m" + f"Date: {date_str}, Anomaly detected: Production {output_power} kW is significantly lower than expected (threshold: {threshold} kW)" + "\033[0m")
+            elif output_power > threshold * 2:
+                print("\033[91m" + f"Date: {date_str}, Anomaly detected: Production {output_power} kW is significantly higher than expected (threshold: {threshold} kW)" + "\033[0m")
 
 # Main function
 def main():
